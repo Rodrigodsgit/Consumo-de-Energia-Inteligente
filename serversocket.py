@@ -4,7 +4,7 @@ import types
 import json
 
 HOST = "127.0.0.1"  
-PORT = 4001  
+PORT = 4005  
 
 sel = selectors.DefaultSelector()
 backup = {}
@@ -60,7 +60,7 @@ def post(data,endpoint):
         if result != " " :  
             result.append(list) 
             result[size][0] = result[size][0] + result[size-1][0]
-            return result
+            return result[size]
         else:
             backup[id] = [list]
             return backup[id][0]
@@ -81,7 +81,7 @@ def post(data,endpoint):
     elif endpoint == "/spent":
         if result != " " :
             result.append(list) 
-            return result
+            return result[size]
         else:
             backup[id] = [list]
             return backup[id][0]
@@ -103,6 +103,7 @@ def service_connection(key, mask):
             size = length(res)
             msg = "HTTP/1.1 200 Ok\r\nContent-Type:application/json\r\nContent-Length:{}\r\n\r\n{}\r\n\r\n".format(size,res)
             data.outb = msg.encode()
+            print(backup)
             sent = sock.send(data.outb)
             data.outb = data.outb[sent:]
 
