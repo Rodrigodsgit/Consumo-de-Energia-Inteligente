@@ -3,7 +3,7 @@ import datetime
 
 
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-sock.connect(("127.0.0.1", 4001))
+sock.connect(("127.0.0.1", 4005))
 
 id = 1
 
@@ -26,15 +26,15 @@ while True:
 
     if option == 1:
         increaseValor = input("Enter the amount you want to increase in kWh")
-        send_data(increaseValor,"increase")
+        send_data(increaseValor,"/spent/increase")
 
     elif option == 2:
         decreaseValor = input("Enter the amount you want to decrease in kWh")
-        send_data(decreaseValor,"decrease")
+        send_data(decreaseValor,"/spent/decrease")
 
     elif option == 3:
         setValor = input("Enter the amount you want to set in kWh")
-        send_data(setValor,"set")
+        send_data(setValor,"/spent")
 
     elif option == 4:
         print("Finishing the program")

@@ -25,20 +25,26 @@ def accept_wrapper(sock):
     sel.register(conn, events, data=data)
 
 def type_mensage(data):
-    data = data.decode()
-    data = data.split("\r\n")
-    request = data[0].split(" ")
+    dataProcess = data.decode()
+    dataProcess = dataProcess.split("\r\n")
+    request = dataProcess[0].split(" ")
 
     if request[0] == "GET":
-        get(data)
+        get(dataProcess)
     elif request[0] == "POST":
-        return post(data, request[1])
+        return post(dataProcess, request[1], True), True
     elif request[0] == "PUT":
         print("==========PUT============")
     elif request[0] == "DELETE":
         print("==========DELETE============")
     else:
-        print("Pasrse Error: The client sent a malformed response")
+        body = eval(data)
+        if body.get("id") == 0:
+            if backup:
+                return (int(list(backup.keys())[-1]) +1), False
+            else:
+                return 1, False
+        return post(body,body.get("type"), False), False
 
 def data_spent(body):
     consumption = body.get("consumption")
@@ -49,8 +55,11 @@ def data_spent(body):
 def get(data):
     print(data)
 
-def post(data,endpoint):
-    body = json.loads(data[11])
+def post(data,endpoint, isHttp):
+    if isHttp:
+        body = json.loads(data[11])
+    else:
+        body = data
     id = body.get("id")
     result = backup.get(id," ")
     list = data_spent(body)
@@ -72,7 +81,7 @@ def post(data,endpoint):
                return result[size]
             else:
                 result.append(list) 
-                result[size][0] = result[size][0] - result[size-1][0]
+                result[size][0] = result[size-1][0] - result[size][0]
                 return result[size]
         else:
             backup[id] = [0,list[1]]
@@ -99,19 +108,27 @@ def service_connection(key, mask):
             sock.close()
     if mask & selectors.EVENT_WRITE:
         if data.outb:
-            res = type_mensage(data.outb)
-            size = length(res)
-            msg = "HTTP/1.1 200 Ok\r\nContent-Type:application/json\r\nContent-Length:{}\r\n\r\n{}\r\n\r\n".format(size,res)
-            data.outb = msg.encode()
+            res,isHTTP = type_mensage(data.outb)
+            if isHTTP:
+                size = length(res)
+                msg = "HTTP/1.1 200 Ok\r\nContent-Type:application/json\r\nContent-Length:{}\r\n\r\n{}\r\n\r\n".format(size,res)
+                data.outb = msg.encode()
+                sent = sock.send(data.outb)
+                data.outb = data.outb[sent:]
+            else:
+                data.outb = str(res).encode()
+                sent = sock.send(data.outb)
+                data.outb = data.outb[sent:]
+
             print(backup)
-            sent = sock.send(data.outb)
-            data.outb = data.outb[sent:]
+
 
 def length(list):
     count = 0
     for i in list:
         count = count + len(str(i))
     return count + 10
+
 try:
     while True:
         events = sel.select(timeout=None)
