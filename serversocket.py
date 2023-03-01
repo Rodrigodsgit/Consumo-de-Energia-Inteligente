@@ -69,31 +69,31 @@ def post(data,endpoint, isHttp):
         if result != " " :  
             result.append(list) 
             result[size][0] = result[size][0] + result[size-1][0]
-            return result[size]
+            return {"id": id, "consumption": result[size][0],  "datetime": result[size][1]}
         else:
             backup[id] = [list]
-            return backup[id][0]
+            return {"id": id, "consumption": backup[id][0][0],  "datetime": backup[id][0][1]}
 
     elif endpoint == "/spent/decrease":
         if result != " " :
             if list[0] > float(result[size-1][0]):
                result.append([0,list[1]])
-               return result[size]
+               return {"id": id, "consumption": result[size][0],  "datetime": result[size][1]}
             else:
                 result.append(list) 
                 result[size][0] = result[size-1][0] - result[size][0]
-                return result[size]
+                return {"id": id, "consumption": result[size][0],  "datetime": result[size][1]}
         else:
             backup[id] = [0,list[1]]
-            return backup[id][0]
+            return {"id": id, "consumption": backup[id][0][0],  "datetime": backup[id][0][1]}
 
     elif endpoint == "/spent":
         if result != " " :
             result.append(list) 
-            return result[size]
+            return {"id": id, "consumption": result[size][0],  "datetime": result[size][1]}
         else:
             backup[id] = [list]
-            return backup[id][0]
+            return {"id": id, "consumption": backup[id][0][0],  "datetime": backup[id][0][1]}
 
 def service_connection(key, mask):
     sock = key.fileobj
@@ -110,7 +110,8 @@ def service_connection(key, mask):
         if data.outb:
             res,isHTTP = type_mensage(data.outb)
             if isHTTP:
-                size = length(res)
+                res = json.dumps(res)
+                size = len(res)
                 msg = "HTTP/1.1 200 Ok\r\nContent-Type:application/json\r\nContent-Length:{}\r\n\r\n{}\r\n\r\n".format(size,res)
                 data.outb = msg.encode()
                 sent = sock.send(data.outb)
@@ -121,13 +122,6 @@ def service_connection(key, mask):
                 data.outb = data.outb[sent:]
 
             print(backup)
-
-
-def length(list):
-    count = 0
-    for i in list:
-        count = count + len(str(i))
-    return count + 10
 
 try:
     while True:
