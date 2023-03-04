@@ -4,8 +4,9 @@ import datetime
 
 
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-sock.connect(("127.0.0.1", 4005))
+sock.connect(("172.26.48.1", 4005))
 
+print(socket.gethostbyname(socket.gethostname()))
 
 def get_id():
     dicio = {"id": 0}

@@ -22,5 +22,5 @@ def type_mensage(data,backup):
                 return (int(list(backup.keys())[-1]) +1), False
             else:
                 return 1, False
-        return post(body,body.get("type"), False), False
+        return post(body,body.get("type"), False, backup), False
 

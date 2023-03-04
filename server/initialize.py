@@ -5,7 +5,7 @@ import json
 
 from serversocket import type_mensage
 
-HOST = "127.0.0.1"  
+HOST = "172.26.48.1"  
 PORT = 4005  
 
 sel = selectors.DefaultSelector()
@@ -53,6 +53,7 @@ def service_connection(key, mask):
                 data.outb = data.outb[sent:]
 
             print(backup)
+
 
 try:
     while True:
