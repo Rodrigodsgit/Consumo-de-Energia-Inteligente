@@ -52,7 +52,7 @@ def service_connection(key, mask):
                 sent = sock.send(data.outb)
                 data.outb = data.outb[sent:]
 
-            print(backup)
+            print(backup.keys())
 
 
 try:
