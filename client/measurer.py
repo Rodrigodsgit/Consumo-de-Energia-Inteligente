@@ -35,8 +35,9 @@ def send_data():
                 break
         sock.close()  
                 
-    except KeyboardInterrupt:
-        sock.close()  
+    except:
+         pass
+         
 
 def menu():
     try:

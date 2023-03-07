@@ -8,7 +8,7 @@ def type_mensage(data,backup):
     request = dataProcess[0].split(" ")
 
     if request[0] == "GET":
-        get(dataProcess)
+        return get(request[1], backup), True
     elif request[0] == "POST":
         return post(dataProcess, request[1], True, backup), True
     elif request[0] == "PUT":

@@ -15,13 +15,12 @@ def post(data,endpoint, isHttp, backup):
     id = body.get("id")
     result = backup.get(id," ")
     list = data_spent(body)
-    size = len(result)
 
     if endpoint == "/spent":
-        if result != " " :  
+        if result != " " :
+            list[0] += result[-1][0]
             result.append(list) 
-            result[size][0] = result[size][0] + result[size-1][0]
-            return {"id": id, "consumption": result[size][0],  "datetime": result[size][1]}
+            return {"id": id, "consumption": result[-1][0],  "datetime": result[-1][1]}
         else:
             backup[id] = [list]
             return {"id": id, "consumption": backup[id][0][0],  "datetime": backup[id][0][1]}

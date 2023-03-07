@@ -3,7 +3,7 @@ import selectors
 import types
 import json
 
-from serversocket import type_mensage
+from routes import type_mensage
 
 HOST = "172.26.48.1"  
 PORT = 4005  
@@ -52,7 +52,7 @@ def service_connection(key, mask):
                 sent = sock.send(data.outb)
                 data.outb = data.outb[sent:]
 
-            print(backup.keys())
+            print(backup)
 
 
 try:
