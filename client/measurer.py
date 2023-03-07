@@ -20,7 +20,7 @@ def send_data():
         while True:
             time.sleep(1)
             send = base * rate
-            current_date_time = datetime.datetime.now()
+            current_date_time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
             current_date_time = str(current_date_time)
 
             dicio = {"id": id, "consumption": send,

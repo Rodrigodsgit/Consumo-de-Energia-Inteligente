@@ -1,5 +1,6 @@
 
 import json
+from datetime import datetime
 
 def data_spent(body):
     consumption = body.get("consumption")
@@ -14,9 +15,10 @@ def post(data,endpoint, isHttp, backup):
         body = data
     id = body.get("id")
     result = backup.get(id," ")
-    list = data_spent(body)
+    
 
     if endpoint == "/spent":
+        list = data_spent(body)
         if result != " " :
             list[0] += result[-1][0]
             result.append(list) 
@@ -24,4 +26,13 @@ def post(data,endpoint, isHttp, backup):
         else:
             backup[id] = [list]
             return {"id": id, "consumption": backup[id][0][0],  "datetime": backup[id][0][1]}
-
+    elif endpoint == "/historic":
+        if result != " " :
+            filteredDate = []
+            dateLimit = datetime.strptime(body.get("datetime"), '%Y-%m-%d %H:%M:%S')
+            for date in result:
+                if datetime.strptime(date[1], '%Y-%m-%d %H:%M:%S') < dateLimit:
+                    filteredDate.append(date)
+            return filteredDate
+        else:
+            return None
