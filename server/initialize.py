@@ -4,8 +4,9 @@ import types
 import json
 
 from routes import type_mensage
+print(socket.gethostbyname(socket.gethostname()))
 
-HOST = "172.26.48.1"  
+HOST = "172.17.0.2"  
 PORT = 4005  
 
 sel = selectors.DefaultSelector()
