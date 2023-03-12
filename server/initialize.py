@@ -3,10 +3,13 @@ import selectors
 import types
 import json
 
-from routes import type_mensage
+
+from get import get
+from post import post
+
 print(socket.gethostbyname(socket.gethostname()))
 
-HOST = "172.17.0.2"  
+HOST = "127.0.0.1"  
 PORT = 4005  
 
 sel = selectors.DefaultSelector()
@@ -42,6 +45,7 @@ def service_connection(key, mask):
         if data.outb:
             res,isHTTP = type_mensage(data.outb,backup)
             if isHTTP:
+                print(res)
                 res = json.dumps(res)
                 size = len(res)
                 msg = "HTTP/1.1 200 Ok\r\nContent-Type:application/json\r\nContent-Length:{}\r\n\r\n{}\r\n\r\n".format(size,res)
@@ -54,6 +58,29 @@ def service_connection(key, mask):
                 data.outb = data.outb[sent:]
 
             print(backup)
+
+def type_mensage(data,backup):
+    dataProcess = data.decode()
+    dataProcess = dataProcess.split("\r\n")
+    request = dataProcess[0].split(" ")
+
+    if request[0] == "GET":
+        return get(request[1], backup), True
+    elif request[0] == "POST":
+        return post(dataProcess, request[1], True, backup), True
+    elif request[0] == "PUT":
+        print("==========PUT============")
+    elif request[0] == "DELETE":
+        print("==========DELETE============")
+    else:
+        body = eval(data)
+        if body.get("id") == 0:
+            if backup:
+                return (int(list(backup.keys())[-1]) +1), False
+            else:
+                return 1, False
+        return post(body,body.get("type"), False, backup), False
+
 
 
 try:

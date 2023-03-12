@@ -6,7 +6,7 @@ import threading
 
 
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-sock.connect(("172.16.103.211", 4005))
+sock.connect(("127.0.0.1", 4005))
 base,rate = 1.0,1.0
 
 def get_id():
