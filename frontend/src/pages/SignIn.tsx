@@ -81,7 +81,7 @@ export function SignIn() {
                 </form>
 
                 <footer className="mt-auto">
-                    <Text className="text-blue-700 text-[8px] leading-tight">Copyright © 2023 COIOT. Todos os direitos reservados.Todo o conteúdo deste site, é propriedade exclusiva da COIOT e está protegido pelas leis de direitos autorais. 
+                    <Text className="text-blue-700 text-[8px] leading-tight">Copyright © 2023 COIOT. All rights reserved. All content on this site is the exclusive property of COIOT and is protected by copyright laws.
                     
                     </Text>
                 </footer>
