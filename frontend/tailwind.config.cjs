@@ -19,34 +19,9 @@ module.exports = {
       white: '#FFF',
       black: '#000',
       blacktransparent: '#00000080',       
-
-      slate:{
-        50: '#D9D9D9'
-      },
       
       gray:{
-       900: '#17181F',
-       800: '#1E1E1E',
-       500: '#636364',
-       300: '#B6B6B6',
-      },
-
-      green:{
-        900:'#223707',
-        800: '#183A23',
-        700: '#78BA22',
-        500: '#8EC04D'
-      },
-
-      red:{
-        800: '#991b1b'
-      },
-
-      glass: {
-        800: '#FFFFFF50',
-        500: '#FFFFFF20',
-        300: '#FFFFFF05'
-
+       900: '#0F0F12',
       },
 
       blue: {
@@ -54,13 +29,14 @@ module.exports = {
       },
 
       yellow:{
-        500: '#F1C400'
+        500: '#F1C400',
+        700: '#CDAA14',
       }
     },
 
     extend: {
       fontFamily:{
-        sans: 'Raleway, sans-serif'
+        sans:'Inter, sans-serif'
       }
     },
   },

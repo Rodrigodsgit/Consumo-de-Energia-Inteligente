@@ -7,96 +7,86 @@ import { Heading } from "../components/Heading";
 import { Link } from "react-router-dom";
 import { FormEvent, useState } from "react";
 import axios from "axios";
+import { Logo } from "../assets/Logo";
+import { Icon1 } from "../assets/Icon1";
+import { Icon2 } from "../assets/Icon2";
+import { Icon3 } from "../assets/Icon3";
+import { Balls } from "../assets/Balls";
+import { BallsR } from "../assets/BallsR";
 
 export function SignIn() {
 
     return (
-        <div className="w-screen h-screen bg-gradient-to-bl from-green-900 via-gray-900 to-black flex flex-col items-center justify-center ">
-            <header className="mt-4 mb-2">
+        <div className="w-screen h-screen flex flex-row items-center justify-center ">
+            <div className=" flex flex-col bg-gray-900 w-screen h-screen px-8">
+                <header>
+                    <Logo className="h-12 w-12 pl-4"></Logo>
+                </header>
 
-            </header>
-
-            <form
-                className="bg-slate-50 bg-opacity-5 w-full max-w-2xl flex flex-col items-center justify-center rounded-2xl gap-3"
-            >
-                <div className="flex flex-col  w-full max-w-sm gap-4  mt-12 mb-8">
-                    <Heading size="lg">Entrar</Heading>
-                    <Text>Entre para acessar sua conta</Text>
+                <div className="flex flex-row self-start ml-10">
+                    <Icon1 className="h-44 w-44"></Icon1>
+                    <div className="flex flex-col items-center mt-14">
+                        <Text className="font-bold text-white"> Connecting you to the energy </Text>
+                        <Text className="font-bold text-yellow-500"> of the future </Text>
+                    </div>
                 </div>
 
-                <label
-                    htmlFor="email"
-                    className="flex flex-col gap-3 w-full max-w-sm"
-                >
-                    <Text size="sm" className="font-semibold">
-                        Endereço de e-mail
-                    </Text>
-                    <TextInput.Root>
+                <div className="flex flex-row self-end mr-10">
+                     <div className="flex flex-col items-center mt-14">
+                        <Text className="font-bold text-white"> Analyze your consumption and save energy </Text>
+                        <Text className="font-bold text-yellow-500"> with the help of COIOT.</Text>
+                    </div>
+                    <Icon2 className="h-44 w-44"></Icon2>    
+                </div>
+
+                <div className="flex flex-row self-start ml-10">
+                    <Icon3 className="h-44 w-44"></Icon3>
+                    <div className="flex flex-col items-center mt-14 ml-10">
+                        <Text className="font-bold text-white"> A global energy for </Text>
+                        <Text className="font-bold text-yellow-500">a sustainable future</Text>
+                    </div>
+                </div>
+
+            </div>
+
+            <div className=" flex flex-col bg-white w-screen h-screen">
+                <div className="flex flex-row  justify-between pt-6 px-6">
+                    <Balls className="h-32"></Balls>
+                    <BallsR className="h-32"></BallsR>
+                </div>
+                <div className="flex flex-col items-center justify-center">
+                    <Logo className="h-36 "></Logo>
+                    <Heading classname="font-extrabold pt-3 text-3xl"> <span className="text-blue-700 ">CO</span><span className="text-yellow-500">IOT</span></Heading>
+                </div>
+                <form action="" className="flex flex-col items-center ">
+
+                    <label htmlFor="id" className="flex flex-col items-start pb-4">
+                        <Text className="text-blue-700 font-bold pt-4">Identification</Text>
+                        <TextInput.Root>
                         <TextInput.Icon>
                             <Envelope />
                         </TextInput.Icon>
                         <TextInput.Input
-                            type="email"
-                            id="email"
+                            type="text"
+                            id="id"
                             autoComplete="off"
-                            placeholder="Digite seu e-mail"
+                            placeholder="Enter your ID"
                         />
                     </TextInput.Root>
-                </label>
+                    </label>
 
-                <label
-                    htmlFor="password"
-                    className="flex flex-col gap-3 w-full max-w-sm"
-                >
-                    <Text size="sm" className="font-semibold">
-                        Sua senha
+                    <Button className="w-60">
+                        Login
+                    </Button>
+                </form>
+
+                <footer className="mt-auto">
+                    <Text className="text-blue-700 text-[8px] leading-tight">Copyright © 2023 COIOT. Todos os direitos reservados.Todo o conteúdo deste site, é propriedade exclusiva da COIOT e está protegido pelas leis de direitos autorais. 
+                    
                     </Text>
-                    <TextInput.Root>
-                        <TextInput.Icon>
-                            <Lock />
-                        </TextInput.Icon>
-                        <TextInput.Input
-                            type="password"
-                            id="password"
-                            placeholder="********"
-                        />
-                    </TextInput.Root>
-                </label>
+                </footer>
+            </div>
 
-                <label
-                    htmlFor="remember"
-                    className="flex items-center w-full max-w-sm gap-2 mt-2"
-                >
-                    <Text size="sm" className="text-gray-200">
-                        Matenha-me conectado
-                    </Text>
-                </label>
-
-                <Button type="submit" className="mt-4 mb-12 w-fit">
-                    Entrar na plataforma
-                </Button>
-            </form>
-
-            <footer className=" flex flex-col items-center gap-3 mt-4 ">
-                <Text size="sm">
-                    Não possui uma conta?
-                    <Link
-                        to={"/signup"}
-                        className="text-green-700 underline hover:text-white"
-                    >
-                        Crie uma agora!
-                    </Link>
-                </Text>
-
-                <Text asChild size="sm">
-                    <Link
-                        to={"/password_recovery"}
-                        className="text-green-700 underline hover:text-white"
-                    >
-                        Esqueceu sua senha?
-                    </Link>
-                </Text>
-            </footer>
         </div>
     );
 }

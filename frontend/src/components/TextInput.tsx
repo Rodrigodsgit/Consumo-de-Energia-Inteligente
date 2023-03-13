@@ -12,8 +12,8 @@ export interface TextInputRootProps{
 
 function TextInputRoot({valid = true, children, className}: TextInputRootProps){
     return(
-        <div className={clsx(" flex items-center gap-3 h-12 py-4 px-3 rounded  w-full  text-white text-xs ",
-        {   "border-2 border-white": valid === true,
+        <div className={clsx(" flex items-center gap-3 h-12 py-4 px-3 rounded-lg w-full  text-blue-700 text-xs ",
+        {   "border-2 border-black": valid === true,
             "border-2 border-black ": valid === false,
         }, className)}>
             {children}
@@ -29,7 +29,7 @@ TextInputRoot.displayName = 'TextInput.Root'
 
 function TextInputIcon(props: TextInputIconProps){
     return(
-        <Slot className=" w-6 h-6 text-white">
+        <Slot className=" w-6 h-6 text-blue-700">
             {props.children}
         </Slot>
     )
@@ -44,7 +44,7 @@ export interface TextInputInputProps extends InputHTMLAttributes<HTMLInputElemen
 function TextInputInput({className, ...props}: TextInputInputProps){
     return(
         <input
-            className={clsx("bg-transparent flex-1 text-white text-xs placeholder:text-gray-500 outline-none ", className)}
+            className={clsx("bg-transparent flex-1 text-black text-xs placeholder:text-blue-700 outline-none ", className)}
             {...props}
         />
     )

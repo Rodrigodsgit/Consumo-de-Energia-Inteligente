@@ -13,11 +13,9 @@ export function Button({ mode = 'default', children, asChild, className, ...prop
     return(
         <Comp 
         className={clsx(
-        'font-semibold text-white', 
+        'font-semibold text-blue-700', 
 
-       {'py-3 px-4 bg-black rounded-xl text-sm w-full  ring-white': mode === 'default', 
-
-        'bg-black bg-opacity-50  hover:bg-opacity-20  rounded-full px-4 py-2': mode === 'closer'}
+       {'py-3 px-4 bg-yellow-500 rounded-xl text-sm w-full hover:bg-yellow-700 ring-black': mode === 'default'}
 
         ,className
         )}
