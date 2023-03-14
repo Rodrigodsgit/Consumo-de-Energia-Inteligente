@@ -4,6 +4,7 @@ import datetime
 import time 
 import threading
 
+# IP Fisico 172.16.103.211
 
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 sock.connect(("127.0.0.1", 4005))

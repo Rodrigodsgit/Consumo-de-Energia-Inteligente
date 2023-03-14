@@ -21,3 +21,9 @@ def get(endpoint, backup):
             return res
         else:
             return None
+    
+    elif endpoint[1] == "measurer":
+       if backup.get(endpoint[2]):
+           return True
+       else: 
+           return False

@@ -2,9 +2,8 @@ import { Envelope } from "phosphor-react";
 import { TextInput } from "../components/TextInput";
 import { Text } from "../components/Text";
 import { Button } from "../components/Button";
-import { Lock } from "phosphor-react";
 import { Heading } from "../components/Heading";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { FormEvent, useState } from "react";
 import axios from "axios";
 import { Logo } from "../assets/Logo";
@@ -13,8 +12,38 @@ import { Icon2 } from "../assets/Icon2";
 import { Icon3 } from "../assets/Icon3";
 import { Balls } from "../assets/Balls";
 import { BallsR } from "../assets/BallsR";
+import { useToast } from '@chakra-ui/react'
+
 
 export function SignIn() {
+
+    const [id, setID] =  useState("");
+    const toast = useToast();
+    const navigate = useNavigate();
+    
+    async function  handleSignIp(event: FormEvent) {
+        event.preventDefault()
+
+        axios({
+            method: 'get',
+            url: `http://127.0.0.1:4005/measurer/${id}`,
+        }).then(function (response){
+            if (response.data){
+                navigate('/historic', { replace: true });
+            }
+            else{
+                setID('');
+                toast({
+                    title: 'Non-existent identification.',
+                    description: "Confirm that this meter exists.",
+                    status: 'error',
+                    duration: 9000,
+                    isClosable: true,
+                  })
+            }
+        })
+
+    }
 
     return (
         <div className="w-screen h-screen flex flex-row items-center justify-center ">
@@ -58,7 +87,7 @@ export function SignIn() {
                     <Logo className="h-36 "></Logo>
                     <Heading classname="font-extrabold pt-3 text-3xl"> <span className="text-blue-700 ">CO</span><span className="text-yellow-500">IOT</span></Heading>
                 </div>
-                <form action="" className="flex flex-col items-center ">
+                <form className="flex flex-col items-center"  onSubmit={handleSignIp}>
 
                     <label htmlFor="id" className="flex flex-col items-start pb-4">
                         <Text className="text-blue-700 font-bold pt-4">Identification</Text>
@@ -67,6 +96,8 @@ export function SignIn() {
                             <Envelope />
                         </TextInput.Icon>
                         <TextInput.Input
+                            value={id}
+                            onChange={(e) => setID(e.target.value)}
                             type="text"
                             id="id"
                             autoComplete="off"
@@ -75,9 +106,10 @@ export function SignIn() {
                     </TextInput.Root>
                     </label>
 
-                    <Button className="w-60">
-                        Login
+                    <Button className="w-[11rem]" type="submit">
+                        Login 
                     </Button>
+
                 </form>
 
                 <footer className="mt-auto">
@@ -90,3 +122,4 @@ export function SignIn() {
         </div>
     );
 }
+

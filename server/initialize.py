@@ -9,6 +9,8 @@ from post import post
 
 print(socket.gethostbyname(socket.gethostname()))
 
+# IPDocker 172.17.0.2
+
 HOST = "127.0.0.1"  
 PORT = 4005  
 
@@ -48,7 +50,7 @@ def service_connection(key, mask):
                 print(res)
                 res = json.dumps(res)
                 size = len(res)
-                msg = "HTTP/1.1 200 Ok\r\nContent-Type:application/json\r\nContent-Length:{}\r\n\r\n{}\r\n\r\n".format(size,res)
+                msg = "HTTP/1.1 200 Ok\r\nContent-Type:application/json\r\nContent-Length:{}\r\nAccess-Control-Allow-Origin: *\r\n\r\n{}\r\n\r\n".format(size,res)
                 data.outb = msg.encode()
                 sent = sock.send(data.outb)
                 data.outb = data.outb[sent:]
