@@ -23,7 +23,6 @@ def post(data,endpoint, isHttp, backup):
         res = alert({},result)
         list = data_spent(body)
         if result != " " :
-            list[0] += result[-1][0]
             result.append(list)
             res.update({"id": id, "consumption": result[-1][0],  "datetime": result[-1][1]})
             return res

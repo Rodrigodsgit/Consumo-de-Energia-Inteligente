@@ -13,14 +13,14 @@ export function NavBar() {
                 <li className='flex flex-col items-center cursor-pointer transition-transform duration-300  hover:scale-150'>
                     <ClockCounterClockwise className='text-yellow-500 w-6 h-6'/>
                     <Text className="text-white hover:text-yellow-700 font-extralight" size="lg">
-                        <Link to={'/'}>Historic</Link>
+                        <Link to={'/historic'}>Historic</Link>
                     </Text>
                 </li>
 
                 <li className='flex flex-col items-center cursor-pointer transition-transform duration-300  hover:scale-150'>
                     <Money  className='text-yellow-500 w-6 h-6'/>
                     <Text className="text-white hover:text-yellow-700 font-extralight" size="lg">
-                        <Link to={'/'}>Invaice</Link>
+                        <Link to={'/invoice'}>Invoice</Link>
                     </Text></li>
             </ul>
     </nav>

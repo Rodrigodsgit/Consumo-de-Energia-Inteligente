@@ -3,7 +3,7 @@ import { TextInput } from "../components/TextInput";
 import { Text } from "../components/Text";
 import { Button } from "../components/Button";
 import { Heading } from "../components/Heading";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { FormEvent, useState } from "react";
 import axios from "axios";
 import { Logo } from "../assets/Logo";
@@ -30,6 +30,7 @@ export function SignIn() {
         }).then(function (response){
             if (response.data){
                 navigate('/historic', { replace: true });
+                localStorage.setItem("id", id);
             }
             else{
                 setID('');

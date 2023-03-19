@@ -7,7 +7,7 @@ def get(endpoint, backup):
         historic = backup.get(endpoint[2]," ")
         if historic != " ":
             res = alert({},historic)
-            res.update({endpoint[2]:historic})
+            res.update({"historic":historic})
             return res
         else:
             return None
@@ -16,7 +16,7 @@ def get(endpoint, backup):
         if historic != " ":
             res = alert({},historic)
             spent = historic[-1][0]
-            value = spent * 0.8
+            value = round((spent * 0.4),2)
             res.update({"invoice":value})
             return res
         else:
