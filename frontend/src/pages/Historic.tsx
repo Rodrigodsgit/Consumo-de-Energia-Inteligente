@@ -22,7 +22,7 @@ export function Historic(){
     async function historic() {
         axios({
             method: 'get',
-            url: `http://127.0.0.1:4005/historic/${ID}`,
+            url: `http://172.16.103.2:4005/historic/${ID}`,
         }).then(function(response){
             setData(response.data.historic)
             setGraph(response.data.historic.map(([spent, date], index) => ({

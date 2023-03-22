@@ -11,7 +11,7 @@ print(socket.gethostbyname(socket.gethostname()))
 
 # IPDocker 172.17.0.2
 
-HOST = "172.17.0.2"  
+HOST = "172.17.0.3"  
 PORT = 4005  
 
 sel = selectors.DefaultSelector()

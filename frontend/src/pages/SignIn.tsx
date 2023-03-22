@@ -26,7 +26,7 @@ export function SignIn() {
 
         axios({
             method: 'get',
-            url: `http://127.0.0.1:4005/measurer/${id}`,
+            url: `http://172.16.103.2:4005/measurer/${id}`,
         }).then(function (response){
             if (response.data){
                 navigate('/historic', { replace: true });
@@ -48,7 +48,7 @@ export function SignIn() {
 
     return (
         <div className="w-screen h-screen flex flex-row items-center justify-center ">
-            <div className=" flex flex-col bg-gray-900 w-screen h-screen px-8">
+            <div className=" flex flex-col bg-gray-900 bg-[url('../assets/Topography.svg')] w-screen h-screen px-8">
                 <header>
                     <Logo className="h-12 w-12 pl-4"></Logo>
                 </header>
@@ -114,7 +114,7 @@ export function SignIn() {
                 </form>
 
                 <footer className="mt-auto">
-                    <Text className="text-blue-700 text-[8px] leading-tight">Copyright © 2023 COIOT. All rights reserved. All content on this site is the exclusive property of COIOT and is protected by copyright laws.
+                    <Text className="text-blue-700 text-[0.6rem] leading-tight">Copyright © 2023 COIOT. All rights reserved. All content on this site is the exclusive property of COIOT and is protected by copyright laws.
                     
                     </Text>
                 </footer>

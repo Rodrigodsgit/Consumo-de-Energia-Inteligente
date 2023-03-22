@@ -22,7 +22,7 @@ export function Invoice(){
         async function getBill() {
             axios({
                 method: 'get',
-                url: `http://127.0.0.1:4005/invoice/${ID}`,
+                url: `http://172.16.103.2:4005/invoice/${ID}`,
             }).then(function(response){
                 setAlerta(response.data.alert)
                 setInvoice(response.data.invoice)
@@ -43,9 +43,9 @@ export function Invoice(){
                 <Logo className=" mt-8 h-16 w-16"></Logo>
                 <div className="flex flex-col pt-6 pl-6 items-center w-[24rem]">
                     <QRCode value="https://www.example.com" className="w-40 " />
-                    <Text className="text-white text-[0.7rem] ">Nome do beneficiário: COIOT Energia Elétrica</Text>
-                    <Text className="text-white text-[0.7rem] ">Identificação do pagamento: Fatura nº 123456789</Text>
-                    <Text className="text-white text-[0.5rem] text-center pt-4">Instruções: Leia este código com o seu aplicativo de banco para concluir o pagamento da fatura.
+                    <Text className="text-white text-[0.6rem] ">Nome do beneficiário: COIOT Energia Elétrica</Text>
+                    <Text className="text-white text-[0.6rem] ">Identificação do pagamento: Fatura nº 123456789</Text>
+                    <Text className="text-white text-[0.6rem] text-center pt-4">Instruções: Leia este código com o seu aplicativo de banco para concluir o pagamento da fatura.
                     Para mais informações ou ajuda, entre em contato com o nosso suporte pelo telefone (xx) xxxx-xxxx ou pelo e-mail suporte@coiot.com.br</Text>
                 </div>
                 <div className="mt-auto pb-4 pl-6 ">
