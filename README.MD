@@ -3,8 +3,8 @@
 </div>
 
 <div style="display: inline_block" align="center">
-<a href="#pt"> English </a> |
-<a href="#en"> Portuguese  </a> 
+<a href="#en"> English </a> |
+<a href="#pt"> Portuguese  </a> 
 </div>
 
 <br>
